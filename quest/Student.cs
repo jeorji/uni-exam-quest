@@ -3,12 +3,16 @@ namespace UniExamQuest
     class Student
     {
         public Properties? Prop;
+        public string Name { get; set; }
         public bool IsStudy { get; set; }
         public bool IsSick { get; set; }
         public int StipendSize { get; set; }
-        public Student()
+        public int Day { get; set; }
+        public Student(string name)
         {
-            StipendSize = 0;
+            Day = 0;
+            Name = name;
+            Prop?.SetDefault();
             IsStudy = false;
             IsSick = false;
         }
