@@ -2,20 +2,13 @@ namespace UniExamQuest
 {
     class Student
     {
-        public int Health { get; set; }
+        public Properties? Prop;
         public bool IsStudy { get; set; }
-        public int Money { get; set; }
-        public int Mind { get; set; }
-        public int Happiness { get; set; }
         public bool IsSick { get; set; }
         public int StipendSize { get; set; }
         public Student()
         {
-            Happiness = 100;
-            Health = 100;
-            Mind = 100;
             StipendSize = 0;
-            Money = 0;
             IsStudy = false;
             IsSick = false;
         }
@@ -29,10 +22,8 @@ namespace UniExamQuest
         }
         public void GetStipend()
         {
-            if (IsStudy)
-            {
-                Money += StipendSize;  
-            }
+            if (IsStudy && Prop is not null)
+                Prop.Money += StipendSize;  
         }
     }
 }
