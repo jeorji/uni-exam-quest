@@ -10,11 +10,9 @@ namespace UniExamQuest
         public int Day { get; set; }
         public Student(string name)
         {
-            Day = 0;
             Name = name;
-            Prop?.SetDefault();
-            IsStudy = false;
-            IsSick = false;
+            Prop = new Properties();
+            Prop.SetDefault();
         }
         public void FallSick()
         {
