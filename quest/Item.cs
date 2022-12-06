@@ -1,15 +1,12 @@
 ﻿namespace UniExamQuest
 {
-    class Item
+    class Item : Activity
     {
-        public Properties? Prop;
         public double Price { get; set; }
-        public string Name { get; set; }
-        public Item(double price, string name)
+
+        public Item(string name, double price) : base(name)
         {
             Price = price;
-            Name = name;
-            Prop = new Properties();
         }
 
         public override string ToString()
