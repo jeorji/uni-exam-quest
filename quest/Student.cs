@@ -2,17 +2,24 @@ namespace UniExamQuest
 {
     class Student
     {
-        public Properties? Prop;
+        public enum Properties {
+            Health,
+            Money,
+            Satiation,
+            Happiness,
+            Mind,
+        }
+        public Dictionary<Properties, int> PropertyValues;
         public string Name { get; set; }
         public bool IsStudy { get; set; }
         public bool IsSick { get; set; }
         public int StipendSize { get; set; }
         public int Day { get; set; }
+
         public Student(string name)
         {
             Name = name;
-            Prop = new Properties();
-            Prop.SetDefault();
+            PropertyValues = new Dictionary<Properties, int>();
         }
         public void FallSick()
         {
@@ -24,8 +31,8 @@ namespace UniExamQuest
         }
         public void GetStipend()
         {
-            if (IsStudy && Prop is not null)
-                Prop.Money += StipendSize;  
+            if (IsStudy)
+                PropertyValues[Properties.Money] += StipendSize;
         }
     }
 }
