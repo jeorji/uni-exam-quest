@@ -10,6 +10,7 @@ namespace UniExamQuest
             Mind,
         }
         public Dictionary<Properties, int> PropertyValues;
+        public Inventory Inventory;
         public string Name { get; set; }
         public bool IsStudy { get; set; }
         public bool IsSick { get; set; }
