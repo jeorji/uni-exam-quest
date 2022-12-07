@@ -6,7 +6,7 @@ namespace UniExamQuest
         void BuyItem(Item item);
     }
 
-    interface IStudent : IStoreBuyer {}
+    interface IStudent : IStoreBuyer, IActivityConsumer {}
 
     class Student : IStudent
     {
@@ -53,6 +53,12 @@ namespace UniExamQuest
 
             Money -= item.Price;
             Inventory.Add(item);
+        }
+
+        public void InteractWith(Activity activity)
+        {
+            foreach (var impactPair in activity.Impact)
+                PropertyValues[impactPair.Key] += impactPair.Value;
         }
     }
 }

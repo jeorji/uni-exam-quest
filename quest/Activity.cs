@@ -1,5 +1,10 @@
 namespace UniExamQuest
 {
+    interface IActivityConsumer
+    {
+        void InteractWith(Activity activity);
+    }
+
     abstract class Activity
     {
         public string Name { get; set; }
