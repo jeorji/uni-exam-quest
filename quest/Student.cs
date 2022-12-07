@@ -1,11 +1,5 @@
 namespace UniExamQuest
 {
-    interface IStoreBuyer
-    {
-        double Money { get; set; }
-        void BuyItem(Item item);
-    }
-
     interface IStudent : IStoreBuyer, IActivityConsumer {}
 
     class Student : IStudent
