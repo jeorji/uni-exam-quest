@@ -36,25 +36,13 @@ namespace UniExamQuest
             {
                 foreach (XmlElement element in rootElement)
                 {
-                    if (element.Name == "name")
+                    Console.Write(element.Name + ": " + element.InnerText + " ");
+
+                    foreach (XmlAttribute xmlAttribute in element.Attributes)
                     {
-                        Console.Write($"Name: {element.InnerText}");
+                        Console.Write(xmlAttribute.Name + " " + xmlAttribute.Value + " ");
                     }
 
-                    if (element.Name == "price")
-                    {
-                        Console.Write($"Price: {element.InnerText}");
-                    }
-
-                    XmlNode? health = element.Attributes.GetNamedItem("health");
-                    Console.Write(health?.Value + " ");
-                    XmlNode? satiation = element.Attributes.GetNamedItem("satiation");
-                    Console.Write(satiation?.Value + " ");
-                    XmlNode? happiness = element.Attributes.GetNamedItem("happiness");
-                    Console.Write(happiness?.Value + " ");
-                    XmlNode? mind = element.Attributes.GetNamedItem("mind");
-                    Console.Write(mind?.Value + " ");
-                    
                     Console.WriteLine();
                 }
             }
