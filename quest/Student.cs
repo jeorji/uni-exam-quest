@@ -1,10 +1,18 @@
 namespace UniExamQuest
 {
-    class Student
+    interface IStoreBuyer
     {
-        public enum Properties {
+        double Money { get; set; }
+        void BuyItem(Item item);
+    }
+
+    interface IStudent : IStoreBuyer {}
+
+    class Student : IStudent
+    {
+        public enum Properties
+        {
             Health,
-            Money,
             Satiation,
             Happiness,
             Mind,
@@ -16,10 +24,12 @@ namespace UniExamQuest
         public bool IsSick { get; set; }
         public int StipendSize { get; set; }
         public int Day { get; set; }
+        public double Money { get; set; }
 
         public Student(string name)
         {
             Name = name;
+            Inventory = new Inventory();
             PropertyValues = new Dictionary<Properties, int>();
         }
         public void FallSick()
@@ -33,7 +43,16 @@ namespace UniExamQuest
         public void GetStipend()
         {
             if (IsStudy)
-                PropertyValues[Properties.Money] += StipendSize;
+                Money += StipendSize;
+        }
+
+        public void BuyItem(Item item)
+        {
+            if (Money < item.Price)
+                return;
+
+            Money -= item.Price;
+            Inventory.Add(item);
         }
     }
 }
