@@ -2,6 +2,11 @@
 
 namespace UniExamQuest
 {
+    public interface IDeserializable<T> where T: new()
+    {
+        T Deserialize(string xmlString);
+    }
+
     public class XmlLoader
     {
         private string _path = String.Empty;
@@ -26,27 +31,26 @@ namespace UniExamQuest
         {
             Path = path;
         }
-        public void Parse()
+
+        public List<T> Parse<T>() where T: IDeserializable<T>, new()
         {
             XmlDocument itemsDoc = new XmlDocument();
             itemsDoc.Load(Path);
-            
+            var resultList = new List<T>();
+
             XmlElement? rootElement = itemsDoc.DocumentElement;
+
             if (rootElement != null)
             {
                 foreach (XmlElement element in rootElement)
                 {
-                    Console.Write(element.Name + ": " + element.InnerText + " ");
-
-                    foreach (XmlAttribute xmlAttribute in element.Attributes)
-                    {
-                        Console.Write(xmlAttribute.Name + " " + xmlAttribute.Value + " ");
-                    }
-
-                    Console.WriteLine();
+                    T singelItem = new T();
+                    resultList.Add(singelItem.Deserialize(element.InnerXml));
                 }
             }
+            return resultList;
         }
     }
+
 }
 
