@@ -18,7 +18,7 @@ namespace UniExamQuest
         public bool IsSick { get; set; }
         public int StipendSize { get; set; }
         public int Day { get; set; }
-        public double Money { get; set; }
+        public decimal Money { get; set; }
 
         public Student(string name)
         {

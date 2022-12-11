@@ -4,9 +4,9 @@ namespace UniExamQuest
 {
     class Item : Activity, IDeserializable<Item>
     {
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
-        public Item(string name, double price) : base(name)
+        public Item(string name, decimal price) : base(name)
         {
             Price = price;
         }

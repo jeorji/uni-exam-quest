@@ -2,7 +2,7 @@
 {
     interface IStoreBuyer
     {
-        double Money { get; set; }
+        decimal Money { get; set; }
         void BuyItem(Item item);
     }
 
