@@ -4,14 +4,11 @@ namespace UniExamQuest
 
     class Student : IStudent
     {
-        public enum Properties
-        {
-            Health,
-            Satiation,
-            Happiness,
-            Mind,
-        }
-        public Dictionary<Properties, int> PropertyValues;
+        public int Health { get; set; }
+        public int Satiation { get; set; }
+        public int Happiness { get; set; }
+        public int Mind { get; set; }
+
         public Inventory Inventory;
         public string Name { get; set; }
         public bool IsStudy { get; set; }
@@ -24,7 +21,6 @@ namespace UniExamQuest
         {
             Name = name;
             Inventory = new Inventory();
-            PropertyValues = new Dictionary<Properties, int>();
         }
         public void FallSick()
         {
@@ -51,8 +47,10 @@ namespace UniExamQuest
 
         public void InteractWith(Activity activity)
         {
-            foreach (var impactPair in activity.Impact)
-                PropertyValues[impactPair.Key] += impactPair.Value;
+            Happiness += activity.Happiness;
+            Satiation += activity.Satiation;
+            Mind += activity.Mind;
+            Health += activity.Health;
         }
     }
 }

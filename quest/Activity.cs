@@ -5,15 +5,18 @@ namespace UniExamQuest
         void InteractWith(Activity activity);
     }
 
-    abstract class Activity
+    public abstract class Activity
     {
         public string Name { get; set; }
-        public Dictionary<Student.Properties, int> Impact;
+
+        public int Health { get; set; }
+        public int Satiation { get; set; }
+        public int Happiness { get; set; }
+        public int Mind { get; set; }
 
         protected Activity(string name)
         {
             Name = name;
-            Impact = new Dictionary<Student.Properties, int>();
         }
     }
 }
