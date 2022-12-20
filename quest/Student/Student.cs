@@ -1,6 +1,6 @@
 namespace UniExamQuest
 {
-    interface IStudent : IStoreBuyer, IActivityConsumer {}
+    interface IStudent : IStoreBuyer, IActivityConsumer { }
 
     class Student : IStudent
     {
@@ -9,7 +9,7 @@ namespace UniExamQuest
         public int Happiness { get; set; }
         public int Mind { get; set; }
 
-        public Inventory Inventory;
+        public Inventory Inventory { get; set; }
         public string Name { get; set; }
         public bool IsStudy { get; set; }
         public bool IsSick { get; set; }
