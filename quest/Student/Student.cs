@@ -1,6 +1,6 @@
 namespace UniExamQuest
 {
-    interface IStudent : IStoreBuyer, IActivityConsumer { }
+    interface IStudent : IStoreBuyer, IActivityConsumer, IGamePlayer { }
 
     class Student : IStudent
     {
@@ -14,21 +14,13 @@ namespace UniExamQuest
         public bool IsStudy { get; set; }
         public bool IsSick { get; set; }
         public int StipendSize { get; set; }
-        public int Day { get; set; }
         public decimal Money { get; set; }
 
         public Student(string name)
         {
+            IsAlive = true;
             Name = name;
             Inventory = new Inventory();
-        }
-        public void FallSick()
-        {
-            IsSick = true;
-        }
-        public void Recover()
-        {
-            IsSick = false;
         }
         public void GetStipend()
         {
@@ -39,7 +31,7 @@ namespace UniExamQuest
         public void BuyItem(Item item)
         {
             if (Money < item.Price)
-                return;
+                throw new NotImplementedException();
 
             Money -= item.Price;
             Inventory.Add(item);
