@@ -1,76 +1,38 @@
 namespace UniExamQuest
 {
-    interface IPlayer
-    {
-        int Health { get; set; }
-        int Satiation { get; set; }
-        int Happiness { get; set; }
-        int Mind { get; set; }
-        bool IsAlive { get; set; }
-        void GetStipend();
-    }
 
     class GameMananger
     {
-        public int Day { get; set; }
-        public GameSettings? Settings { get; set; }
-        public IPlayer Player { get; set; }
+        public GameState State { get; set; }
 
-        public GameMananger(IPlayer player)
+        private AssetsStorage Storage { get; set; }
+
+        public GameMananger()
         {
-            Player = player;
+            State = new GameState();
+            Storage = new AssetsStorage(new XmlLoader());
         }
 
-        public void InitGame()
+        public void NewGame(string playerName)
         {
-            Settings = loadSettingsFromDefaultPath();
+            State.Player = new Student(playerName);
+            State.Settings = loadFromCurrentDir<GameSettings>("settings.xml");
         }
 
-        public void NextDay()
+        public void SaveGame(string gameName)
         {
-            doDailyPlayerUpdate();
-            Day++;
+            Storage.SaveToFile<GameState>(State, $"./GameSaves/{gameName}.xml");
         }
 
-        private void doDailyPlayerUpdate()
+        public void LoadGame(string gameName)
         {
-            if (Settings is null)
-                throw new NotImplementedException();
-
-            if (isStipendDay())
-                Player.GetStipend();
-
-            Player.Health += getDailyHealthChange();
-            Player.Satiation += Settings.DailySatiationChange;
-            Player.Happiness += Settings.DailyHappinesChange;
-            Player.Mind += Settings.DailyMindChange;
+            Storage.LoadFromFile<GameState>($"./GameSaves/{gameName}.xml");
         }
 
-        private bool isStipendDay()
+        private T loadFromCurrentDir<T>(string fileName)
         {
-            if (Settings is null)
-                throw new NotImplementedException();
-
-            return Day % Settings.StipendPayoutFrequency == 0;
-        }
-
-        private int getDailyHealthChange()
-        {
-            if (Settings is null)
-                throw new NotImplementedException();
-
-            return Player.Satiation switch
-            {
-                0 => 2 * Settings.DailyHealthChange,
-                _ => Settings.DailyHealthChange,
-            };
-        }
-
-        private GameSettings loadSettingsFromDefaultPath()
-        {
-            var defaultPath = "./settgins.xml";
-            var AS = new AssetsStorage(new XmlLoader());
-            return AS.LoadFromFile<GameSettings>(defaultPath);
+            var path = $"./{fileName}";
+            return Storage.LoadFromFile<T>(path);
         }
     }
 }

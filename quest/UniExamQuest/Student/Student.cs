@@ -4,18 +4,20 @@ namespace UniExamQuest
 
     public class Student : IStudent
     {
-        public class Property
-        {
-            public string Name { get; set; }
-            public int Value { get; set; }
-            public Property(string name, int value)
-            {
-                Name = name;
-                Value = value;
-            }
-            public Property() {}
-        }
-        public List<Property> Properties;
+        /*
+         *public class Property
+         *{
+         *    public string Name { get; set; }
+         *    public int Value { get; set; }
+         *    public Property(string name, int value)
+         *    {
+         *        Name = name;
+         *        Value = value;
+         *    }
+         *    public Property() {}
+         *}
+         *public List<Property> Properties;
+         */
         public int Health { get; set; }
         public int Satiation { get; set; }
         public int Happiness { get; set; }
