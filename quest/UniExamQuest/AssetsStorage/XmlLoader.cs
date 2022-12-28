@@ -1,4 +1,6 @@
+using System;
 using System.Xml.Serialization;
+using System.IO;
 
 namespace UniExamQuest
 {
@@ -18,13 +20,24 @@ namespace UniExamQuest
         public T Deserialize<T>(string sourceData)
         {
             var xmlSerializer = new XmlSerializer(typeof(T));
+            if (sourceData == null)                                    
+            {
+                throw new NotImplementedException("The string for deserialization is null");
+            }
             TextReader reader = new StringReader(sourceData);
 
-            T? result = (T?)xmlSerializer.Deserialize(reader);
-            if (result is null)
-                throw new NotImplementedException();
+            try
+            {
+                T result = (T)xmlSerializer.Deserialize(reader);
+                if (result == null)
+                    throw new NotImplementedException("The result of deserialization is null"); 
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException("Cannot deserialize: " + sourceData);
+            }
 
-            return result;
         }
     }
 }
