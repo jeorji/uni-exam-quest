@@ -1,6 +1,8 @@
+using System;
+
 namespace UniExamQuest
 {
-    interface IPlayer
+    public interface IPlayer              
     {
         int Health { get; set; }
         int Satiation { get; set; }
@@ -10,12 +12,17 @@ namespace UniExamQuest
         void GetStipend();
     }
 
-    class GameState
+    public class GameState   //*** new
     {
-        public IPlayer? Player { get; set; }
-        public GameSettings? Settings { get; set; }
+        public IPlayer Player { get; set; }
+        public GameSettings Settings { get; set; }
 
         public int Day { get; set; }
+
+        public GameState()      
+        {
+
+        }
 
         public void NextDay()
         {
@@ -32,10 +39,33 @@ namespace UniExamQuest
             if (isStipendDay())
                 Player.GetStipend();
 
-            Player.Health += getDailyHealthChange();
-            Player.Satiation += Settings.DailySatiationChange;
-            Player.Happiness += Settings.DailyHappinesChange;
-            Player.Mind += Settings.DailyMindChange;
+            try
+            {
+                if (Player.Happiness + Settings.DailyHappinesChange >= 0)   
+                {
+                    Player.Happiness += Settings.DailyHappinesChange;
+                }
+                if (Player.Satiation + Settings.DailySatiationChange >= 0)
+                {
+                    Player.Satiation += Settings.DailySatiationChange;
+                }
+                if (Player.Mind + Settings.DailyMindChange >= 0)
+                {
+                    Player.Mind += Settings.DailyMindChange;
+                }
+                if (Player.Health + getDailyHealthChange() >= 0)
+                {
+                    Player.Health += getDailyHealthChange();
+                }
+                /*Player.Health += getDailyHealthChange();
+                Player.Satiation += Settings.DailySatiationChange;
+                Player.Happiness += Settings.DailyHappinesChange;
+                Player.Mind += Settings.DailyMindChange; */
+            }
+            catch (NotImplementedException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
         }
 
         private bool isStipendDay()
@@ -48,19 +78,15 @@ namespace UniExamQuest
         {
             isNotNull();
 
-            return Player.Satiation switch
-            {
-                0 => 2 * Settings.DailyHealthChange,
-                _ => Settings.DailyHealthChange,
-            };
+            return Player.Satiation == 0 ? 2 * Settings.DailyHealthChange : Settings.DailyHealthChange;
         }
 
         private void isNotNull()
         {
             if (Settings is null)
-                throw new NotImplementedException();
+                throw new NotImplementedException("Settings: null");    
             if (Player is null)
-                throw new NotImplementedException();
+                throw new NotImplementedException("Player: null");      
         }
     }
 }
