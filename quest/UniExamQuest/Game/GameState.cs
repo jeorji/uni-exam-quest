@@ -12,17 +12,12 @@ namespace UniExamQuest
         void GetStipend();
     }
 
-    public class GameState   //*** new
+    public class GameState
     {
         public IPlayer Player { get; set; }
         public GameSettings Settings { get; set; }
 
         public int Day { get; set; }
-
-        public GameState()      
-        {
-
-        }
 
         public void NextDay()
         {
@@ -57,14 +52,10 @@ namespace UniExamQuest
                 {
                     Player.Health += getDailyHealthChange();
                 }
-                /*Player.Health += getDailyHealthChange();
-                Player.Satiation += Settings.DailySatiationChange;
-                Player.Happiness += Settings.DailyHappinesChange;
-                Player.Mind += Settings.DailyMindChange; */
             }
-            catch (NotImplementedException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                throw new Exception("Error: " + ex.Message);
             }
         }
 
@@ -77,16 +68,16 @@ namespace UniExamQuest
         private int getDailyHealthChange()
         {
             isNotNull();
-
             return Player.Satiation == 0 ? 2 * Settings.DailyHealthChange : Settings.DailyHealthChange;
         }
 
         private void isNotNull()
         {
             if (Settings is null)
-                throw new NotImplementedException("Settings: null");    
+                throw new Exception("Settings: null");   
+            
             if (Player is null)
-                throw new NotImplementedException("Player: null");      
+                throw new Exception("Player: null");      
         }
     }
 }

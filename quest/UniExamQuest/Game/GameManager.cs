@@ -22,9 +22,9 @@ namespace UniExamQuest
             {
                 State.Settings = loadFromCurrentDir<GameSettings>("settings.xml");
             }
-            catch (NotImplementedException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                throw new Exception("Error: " + ex.Message);
             }       
         }
 

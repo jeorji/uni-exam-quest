@@ -23,27 +23,20 @@ namespace UniExamQuest
         public T LoadFromFile<T>(string path)
         {
             if (!File.Exists(path))
-                throw new NotImplementedException("File not found");         
-            if (System.IO.Path.GetExtension(path) != Loader.FileExtension)
-                throw new NotImplementedException("File has another extension");   
-
+                throw new Exception("File not found");
             
-
+            if (Path.GetExtension(path) != Loader.FileExtension)
+                throw new Exception("File has another extension");
+            
             try
             {
-                string text = System.IO.File.ReadAllText(path);
-                try
-                {
-                    return Loader.Deserialize<T>(text);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                string text = File.ReadAllText(path);
+                return Loader.Deserialize<T>(text);
             }
+            
             catch (Exception ex)
             {
-                throw new NotImplementedException("Error when reading the file");
+                throw new Exception("Error in file reading");
             }
             
 
@@ -51,16 +44,18 @@ namespace UniExamQuest
 
         public void SaveToFile<T>(T value, string path)
         {
-            string data = Loader.Serialize<T>(value);
+            string data = Loader.Serialize(value);
+            
             try   
             {
-                using (StreamWriter writer = new StreamWriter(path))
+                using (StreamWriter writer = new StreamWriter(path)) 
                     writer.WriteLine(data);
             }
+            
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
-            }        
+                throw new Exception("Error when saving to file");
+            }
         }
     }
 }

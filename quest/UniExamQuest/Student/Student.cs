@@ -24,8 +24,7 @@ namespace UniExamQuest
         public int Satiation { get; set; }
         public int Happiness { get; set; }
         public int Mind { get; set; }
-
-        public Inventory Inventory { get; set; }   // *** new
+        public Inventory Inventory { get; set; }
         public string Name { get; set; }
         public bool IsStudy { get; set; }
         public bool IsSick { get; set; }
@@ -35,15 +34,18 @@ namespace UniExamQuest
 
         public Student(string name)
         {
-            IsAlive = true;
+            Health = 100;
+            Mind = 100;
+            Satiation = 100;
+            Happiness = 100;
+            Money = 0;
+            StipendSize = 0;
             Name = name;
-            IsStudy = true; // *** new
+            IsAlive = true;
+            IsSick = false;
+            IsStudy = true;
             Inventory = new Inventory();
         }
-        private Student()
-        {
-        }
-
         public void GetStipend()
         {
             if (IsStudy)
@@ -65,7 +67,7 @@ namespace UniExamQuest
 
         public void InteractWith(Activity activity)
         {
-            if (Happiness + activity.Happiness >= 0)   // *** new
+            if (Happiness + activity.Happiness >= 0)
             {
                 Happiness += activity.Happiness;
             }
@@ -81,8 +83,6 @@ namespace UniExamQuest
             {
                 Health += activity.Health;
             }
-
-            
         }
     }
 }
