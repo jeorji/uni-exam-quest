@@ -1,3 +1,5 @@
+using System;
+
 namespace UniExamQuest
 {
 
@@ -16,7 +18,14 @@ namespace UniExamQuest
         public void NewGame(string playerName)
         {
             State.Player = new Student(playerName);
-            State.Settings = loadFromCurrentDir<GameSettings>("settings.xml");
+            try                                               
+            {
+                State.Settings = loadFromCurrentDir<GameSettings>("settings.xml");
+            }
+            catch (NotImplementedException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }       
         }
 
         public void SaveGame(string gameName)
@@ -24,9 +33,16 @@ namespace UniExamQuest
             Storage.SaveToFile<GameState>(State, $"./GameSaves/{gameName}.xml");
         }
 
-        public void LoadGame(string gameName)
+        public void LoadGame(string gameName)         // *** new ->
         {
-            Storage.LoadFromFile<GameState>($"./GameSaves/{gameName}.xml");
+            try
+            {
+                Storage.LoadFromFile<GameState>($"./GameSaves/{gameName}.xml");
+            }
+            catch (NotImplementedException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }  // *** <-
         }
 
         private T loadFromCurrentDir<T>(string fileName)
