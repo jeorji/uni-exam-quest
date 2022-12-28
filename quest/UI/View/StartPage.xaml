@@ -12,8 +12,11 @@
     <Page.DataContext>
         <vm:StartPage/>
     </Page.DataContext>
-    
+
     <Grid>
         <Label Content="Жизнь студента" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,200,0,0" />
+        <Button Content="Новая игра" FontSize="18" Command="{Binding ShowPage}" 
+                DataContext="{StaticResource MainWindow}" CommandParameter="NewGameGreetingPage"
+                VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </Page>

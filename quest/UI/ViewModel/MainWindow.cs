@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,29 +10,27 @@ namespace UI.ViewModel
 {
     internal class MainWindow : DefaultViewModel
     {
+        public MainWindow()
+        {
+            ShowPageByName("StartPage");
+        }
+
         public Uri? CurrentPage { get; set; }
-        private Command _showPage;
+
+        private Command? _showPage;
         public Command ShowPage
         {
             get
             {
-                if (_showPage == null)
-                {
-                    _showPage = new Command(
+                    _showPage ??= new Command(
                         p => true,
-                        p => showPageByName(p));
-                }
+                        p => ShowPageByName(p));
                 return _showPage;
             }
         }
-        private void showPageByName(object name)
+        public void ShowPageByName(object name)
         {
-            String viewFileName = name.ToString() switch
-            {
-                "StartPage" => "StartPage.xaml",
-                _ => throw new Exception("Unimplemented view"),
-            };
-            CurrentPage = new Uri($"../View/{viewFileName}", UriKind.Relative);
+            CurrentPage = new Uri($"../View/{name.ToString()}.xaml", UriKind.Relative);
             NotifyPropertyChanged("CurrentPage");
         }
     }

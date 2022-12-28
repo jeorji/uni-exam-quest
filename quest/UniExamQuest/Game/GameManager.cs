@@ -3,7 +3,7 @@ using System;
 namespace UniExamQuest
 {
 
-    class GameMananger
+    public class GameMananger
     {
         public GameState State { get; set; }
 
