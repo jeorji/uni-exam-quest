@@ -4,6 +4,7 @@ namespace UniExamQuest
 {
     public interface IPlayer              
     {
+        string Name { get; set; }
         int Health { get; set; }
         int Satiation { get; set; }
         int Happiness { get; set; }
@@ -12,7 +13,8 @@ namespace UniExamQuest
         void GetStipend();
     }
 
-    public class GameState   //*** new
+
+    public class GameState
     {
         public IPlayer Player { get; set; }
         public GameSettings Settings { get; set; }

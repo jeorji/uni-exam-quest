@@ -7,11 +7,9 @@
         xmlns:vm="clr-namespace:UI.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-    <Window.DataContext>
-        <vm:MainWindow/>
-    </Window.DataContext>
+    
     
     <Grid>
-        <Frame Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" />
+        <Frame Source="{Binding CurrentPage}" DataContext="{StaticResource MainWindow}" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
