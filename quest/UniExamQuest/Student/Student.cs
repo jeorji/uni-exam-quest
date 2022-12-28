@@ -1,3 +1,5 @@
+using System;
+
 namespace UniExamQuest
 {
     interface IStudent : IStoreBuyer, IActivityConsumer, IPlayer { }
@@ -23,7 +25,7 @@ namespace UniExamQuest
         public int Happiness { get; set; }
         public int Mind { get; set; }
 
-        private Inventory Inventory { get; set; }
+        public Inventory Inventory { get; set; }   // *** new
         public string Name { get; set; }
         public bool IsStudy { get; set; }
         public bool IsSick { get; set; }
@@ -35,9 +37,12 @@ namespace UniExamQuest
         {
             IsAlive = true;
             Name = name;
+            IsStudy = true; // *** new
             Inventory = new Inventory();
         }
-        private Student() { }
+        private Student()
+        {
+        }
 
         public void GetStipend()
         {
@@ -48,18 +53,36 @@ namespace UniExamQuest
         public void BuyItem(Item item)
         {
             if (Money < item.Price)
-                throw new NotImplementedException();
-
-            Money -= item.Price;
-            Inventory.Add(item);
+            {
+                Console.WriteLine("Not efficient money to buy " + item.Name);
+            }
+            else
+            {
+                Money -= item.Price;
+                Inventory.Add(item);
+            }
         }
 
         public void InteractWith(Activity activity)
         {
-            Happiness += activity.Happiness;
-            Satiation += activity.Satiation;
-            Mind += activity.Mind;
-            Health += activity.Health;
+            if (Happiness + activity.Happiness >= 0)   // *** new
+            {
+                Happiness += activity.Happiness;
+            }
+            if (Satiation + activity.Satiation >= 0)
+            {
+                Satiation += activity.Satiation;
+            }
+            if (Mind + activity.Mind >= 0)
+            {
+                Mind += activity.Mind;
+            }
+            if (Health + activity.Health >= 0)
+            {
+                Health += activity.Health;
+            }
+
+            
         }
     }
 }
