@@ -1,6 +1,6 @@
 namespace UniExamQuest
 {
-    class Inventory
+    public class Inventory
     {
         public Dictionary<Item, int> Content;
 

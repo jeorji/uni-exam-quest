@@ -1,18 +1,31 @@
 namespace UniExamQuest
 {
-    interface IStudent : IStoreBuyer, IActivityConsumer, IGamePlayer { }
+    interface IStudent : IStoreBuyer, IActivityConsumer, IPlayer { }
 
-    class Student : IStudent
+    public class Student : IStudent
     {
+        public class Property
+        {
+            public string Name { get; set; }
+            public int Value { get; set; }
+            public Property(string name, int value)
+            {
+                Name = name;
+                Value = value;
+            }
+            public Property() {}
+        }
+        public List<Property> Properties;
         public int Health { get; set; }
         public int Satiation { get; set; }
         public int Happiness { get; set; }
         public int Mind { get; set; }
 
-        public Inventory Inventory { get; set; }
+        private Inventory Inventory { get; set; }
         public string Name { get; set; }
         public bool IsStudy { get; set; }
         public bool IsSick { get; set; }
+        public bool IsAlive { get; set; }
         public int StipendSize { get; set; }
         public decimal Money { get; set; }
 
@@ -22,6 +35,8 @@ namespace UniExamQuest
             Name = name;
             Inventory = new Inventory();
         }
+        private Student() { }
+
         public void GetStipend()
         {
             if (IsStudy)
