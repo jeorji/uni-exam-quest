@@ -1,3 +1,7 @@
+using System;
+using System.IO;
+using System.Runtime;
+
 namespace UniExamQuest
 {
     interface ILoader
@@ -19,20 +23,44 @@ namespace UniExamQuest
         public T LoadFromFile<T>(string path)
         {
             if (!File.Exists(path))
-                throw new NotImplementedException();
+                throw new NotImplementedException("File not found");         
             if (System.IO.Path.GetExtension(path) != Loader.FileExtension)
-                throw new NotImplementedException();
+                throw new NotImplementedException("File has another extension");   
 
-            string text = System.IO.File.ReadAllText(path);
+            
 
-            return Loader.Deserialize<T>(text);
+            try
+            {
+                string text = System.IO.File.ReadAllText(path);
+                try
+                {
+                    return Loader.Deserialize<T>(text);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotImplementedException("Error when reading the file");
+            }
+            
+
         }
 
         public void SaveToFile<T>(T value, string path)
         {
             string data = Loader.Serialize<T>(value);
-            using (StreamWriter writer = new StreamWriter(path))
-                writer.WriteLine(data);
+            try   
+            {
+                using (StreamWriter writer = new StreamWriter(path))
+                    writer.WriteLine(data);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }        
         }
     }
 }
