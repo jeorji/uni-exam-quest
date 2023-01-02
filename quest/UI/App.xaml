@@ -7,4 +7,5 @@
     <Application.Resources>
         <vm:MainWindow x:Key="MainWindow" />
     </Application.Resources>
+    
 </Application>

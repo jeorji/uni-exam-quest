@@ -4,14 +4,14 @@ using System.Runtime;
 
 namespace UniExamQuest
 {
-    interface ILoader
+    public interface ILoader
     {
         string FileExtension { get; }
         string Serialize<T>(T value);
         T Deserialize<T>(string sourceData);
     }
 
-    class AssetsStorage
+    public class AssetsStorage
     {
         public ILoader Loader { get; set; }
 

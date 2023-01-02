@@ -1,12 +1,12 @@
 ﻿namespace UniExamQuest
 {
-    interface IStoreBuyer
+    public interface IStoreBuyer
     {
         decimal Money { get; set; }
         void BuyItem(Item item);
     }
 
-    class Store
+    public class Store
     {
         public List<Item> Items;
         

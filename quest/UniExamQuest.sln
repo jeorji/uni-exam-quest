@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Blend for Visual Studio Version 17
+# Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{97DF67DA-FF3C-404A-9B31-FADBC23404AF}"
@@ -9,6 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{97DF
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{F9865148-7BED-4056-AD84-DE847D1BE6B1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{96DD4803-B168-43FF-95D9-DB10C53B9FCA} = {96DD4803-B168-43FF-95D9-DB10C53B9FCA}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniExamQuest", "UniExamQuest\UniExamQuest.csproj", "{96DD4803-B168-43FF-95D9-DB10C53B9FCA}"
 EndProject

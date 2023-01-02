@@ -12,6 +12,10 @@ namespace UI.ViewModel
     {
         public MainWindow()
         {
+            // var twix = new UniExamQuest.Quest("twxi", UniExamQuest.Quest.QuestType.UNIVERSIRTY);
+            // var AL = new UniExamQuest.AssetsStorage(new UniExamQuest.XmlLoader());
+            // AL.SaveToFile<List<UniExamQuest.Quest>>(new List<UniExamQuest.Quest>() { twix}, "./quests.xml");
+
             ShowPageByName("StartPage");
         }
 

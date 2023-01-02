@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ArrayOfQuest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Quest>
+    <Name>twxi</Name>
+    <Health>0</Health>
+    <Satiation>0</Satiation>
+    <Happiness>0</Happiness>
+    <Mind>0</Mind>
+    <Type>UNIVERSIRTY</Type>
+  </Quest>
+</ArrayOfQuest>

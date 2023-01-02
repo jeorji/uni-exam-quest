@@ -4,7 +4,7 @@ using System.IO;
 
 namespace UniExamQuest
 {
-    class XmlLoader : ILoader
+    public class XmlLoader : ILoader
     {
         public string FileExtension { get; } = ".xml";
 

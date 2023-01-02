@@ -15,7 +15,7 @@ namespace UI.ViewModel
             {
                 startGame ??= new Command(
                     p => NewUserName is not null && NewUserName.Length > 0,
-                    p => NewGameWithUserName(p)); ;
+                    p => NewGameWithUserName(p));
                 return startGame;
             }
         }

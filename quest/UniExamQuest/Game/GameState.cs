@@ -4,6 +4,7 @@ namespace UniExamQuest
 {
     public interface IPlayer              
     {
+        string Name { get; set; }
         int Health { get; set; }
         int Satiation { get; set; }
         int Happiness { get; set; }
@@ -16,6 +17,8 @@ namespace UniExamQuest
     {
         public IPlayer Player { get; set; }
         public GameSettings Settings { get; set; }
+        public Store Store { get; set; }
+        public List<Quest> Quests { get; set; }
 
         public int Day { get; set; }
 

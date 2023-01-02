@@ -13,8 +13,36 @@
     </Page.DataContext>
 
     <Grid>
-        <Label Content="Тебя звать" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,264,0,0"/>
-        <Label Content="{Binding PlayerName}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="{Binding PlayerName}" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="420,10,0,0"/>
+
+        <Label Content="Задания" FontSize="18"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+        <Label Content="Название"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="234,45,0,0"/>
+
+        <ListView ItemsSource="{Binding AvailableQuests, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedQuest}" Margin="10,45,571,350">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Название: " />
+                        <TextBlock Text="{Binding Name}" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Content="Выполнить" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,255,0,0" Width="219"/>
+        <Label Content="{Binding ElementName=SelectedQuest, Path=.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="302,45,0,0" Width="76" Height="26"/>
+
+        <ListView ItemsSource="{Binding AvailableItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItem}" Margin="10,359,571,35">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Название: " />
+                        <TextBlock Text="{Binding Name}" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label Content="Магазин" FontSize="18"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,320,0,0"/>
+        <Button Content="Купить" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,570,0,0" Width="219"/>
 
     </Grid>
 </Page>
