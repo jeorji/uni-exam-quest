@@ -2,14 +2,24 @@ using System;
 
 namespace UniExamQuest
 {
-    public interface IPlayer              
+    public interface IActivityConsumer
+    {
+        void InteractWith(Activity activity);
+    }
+    public interface IStoreBuyer
+    {
+        decimal Money { get; set; }
+        void BuyItem(Item item);
+    }
+    public interface IPlayer : IStoreBuyer, IActivityConsumer
     {
         string Name { get; set; }
         int Health { get; set; }
         int Satiation { get; set; }
         int Happiness { get; set; }
         int Mind { get; set; }
-        bool IsAlive { get; set; }
+        Inventory Inventory { get; set; }
+        bool IsAlive { get; }
         void GetStipend();
     }
 
@@ -17,10 +27,20 @@ namespace UniExamQuest
     {
         public IPlayer Player { get; set; }
         public GameSettings Settings { get; set; }
-        public Store Store { get; set; }
+        public Store Storage { get; set; }
         public List<Quest> Quests { get; set; }
 
         public int Day { get; set; }
+
+        public void SetStartPlayerValues()
+        {
+            isNotNull();
+            // put in settings
+            Player.Health = 100;
+            Player.Happiness = 50;
+            Player.Satiation = 100;
+            Player.Mind = 0;
+        }
 
         public void NextDay()
         {

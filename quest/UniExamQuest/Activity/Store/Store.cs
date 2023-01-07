@@ -1,11 +1,5 @@
 ﻿namespace UniExamQuest
 {
-    public interface IStoreBuyer
-    {
-        decimal Money { get; set; }
-        void BuyItem(Item item);
-    }
-
     public class Store
     {
         public List<Item> Items;

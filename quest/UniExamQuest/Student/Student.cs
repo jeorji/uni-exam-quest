@@ -6,50 +6,24 @@ namespace UniExamQuest
 
     public class Student : IStudent
     {
-        /*
-         *public class Property
-         *{
-         *    public string Name { get; set; }
-         *    public int Value { get; set; }
-         *    public Property(string name, int value)
-         *    {
-         *        Name = name;
-         *        Value = value;
-         *    }
-         *    public Property() {}
-         *}
-         *public List<Property> Properties;
-         */
         public int Health { get; set; }
         public int Satiation { get; set; }
         public int Happiness { get; set; }
         public int Mind { get; set; }
         public Inventory Inventory { get; set; }
         public string Name { get; set; }
-        public bool IsStudy { get; set; }
-        public bool IsSick { get; set; }
-        public bool IsAlive { get; set; }
         public int StipendSize { get; set; }
         public decimal Money { get; set; }
+        public bool IsAlive => Health > 0;
 
         public Student(string name)
         {
-            Health = 100;
-            Mind = 100;
-            Satiation = 100;
-            Happiness = 100;
-            Money = 0;
-            StipendSize = 0;
             Name = name;
-            IsAlive = true;
-            IsSick = false;
-            IsStudy = true;
             Inventory = new Inventory();
         }
         public void GetStipend()
-        {
-            if (IsStudy)
-                Money += StipendSize;
+        {                
+            Money += StipendSize;
         }
 
         public void BuyItem(Item item)
@@ -67,22 +41,10 @@ namespace UniExamQuest
 
         public void InteractWith(Activity activity)
         {
-            if (Happiness + activity.Happiness >= 0)
-            {
-                Happiness += activity.Happiness;
-            }
-            if (Satiation + activity.Satiation >= 0)
-            {
-                Satiation += activity.Satiation;
-            }
-            if (Mind + activity.Mind >= 0)
-            {
-                Mind += activity.Mind;
-            }
-            if (Health + activity.Health >= 0)
-            {
-                Health += activity.Health;
-            }
+            Happiness += activity.Happiness;
+            Satiation += activity.Satiation;
+            Mind += activity.Mind;
+            Health += activity.Health;
         }
     }
 }

@@ -8,5 +8,6 @@ namespace UniExamQuest
         public int DailyMindChange { get; set; }
 
         public int StipendPayoutFrequency { get; set; }
+        public int MindToUpLevel { get; set; }
     }
 }
