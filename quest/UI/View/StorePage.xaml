@@ -1,0 +1,41 @@
+﻿<Page x:Class="UI.View.StorePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:UI.View"
+      xmlns:vm="clr-namespace:UI.ViewModel"
+      mc:Ignorable="d"
+      d:DesignHeight="550" d:DesignWidth="400"
+      Title="StorePage">
+
+    <Page.DataContext>
+        <vm:StorePage/>
+    </Page.DataContext>
+
+    <Grid>
+        <Label Content="Магазин" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Width="380"/>
+
+        <ListView ItemsSource="{Binding AvailableItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" SelectedItem="{Binding SelectedItem}" Margin="10,52,10,342">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="{Binding Price}" />
+                        <TextBlock Text="руб." />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        <StackPanel DataContext="{Binding SelectedItem}" Margin="10,213,10,35">
+            <TextBlock Text="{Binding Name}" />
+            <TextBlock Text="{Binding Price}"/>
+        </StackPanel>
+
+
+        <Button Content="Купить" Command="{Binding BuyItem}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,520,0,0" Width="380"/>
+    </Grid>
+</Page>
