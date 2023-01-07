@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace UI.ViewModel
 {
@@ -12,9 +11,11 @@ namespace UI.ViewModel
     {
         public MainWindow()
         {
-            // var twix = new UniExamQuest.Quest("twxi", UniExamQuest.Quest.QuestType.UNIVERSIRTY);
-            // var AL = new UniExamQuest.AssetsStorage(new UniExamQuest.XmlLoader());
-            // AL.SaveToFile<List<UniExamQuest.Quest>>(new List<UniExamQuest.Quest>() { twix}, "./quests.xml");
+            //var tw = new UnicodeEncoding
+            //var twix = new UniExamQuest.It("twxi", UniExamQuest.Quest.QuestType.UNIVERSIRTY);
+            //var twix = new UniExamQuest.Item("twxi", 10);
+            //var AL = new UniExamQuest.AssetsStorage(new UniExamQuest.XmlLoader());
+            //AL.SaveToFile<List<UniExamQuest.Item>>(new List<UniExamQuest.Item>() { twix }, "./items.xml");
 
             ShowPageByName("StartPage");
         }
@@ -26,9 +27,9 @@ namespace UI.ViewModel
         {
             get
             {
-                    _showPage ??= new Command(
-                        p => true,
-                        p => ShowPageByName(p));
+                _showPage ??= new Command(
+                    p => true,
+                    p => ShowPageByName(p));
                 return _showPage;
             }
         }

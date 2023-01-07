@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Security.RightsManagement;
 using System.Windows;
 using System.Windows.Media.Media3D;
+using System.Xml.Linq;
 using UI.Model;
 
 namespace UI.ViewModel
@@ -9,20 +11,33 @@ namespace UI.ViewModel
     internal class GamePage : DefaultViewModel
     {
         public string PlayerName { get; } = MODEL.GM.State.Player.Name;
+        public Uri? CurrentPage { get; set; }
 
         public ObservableCollection<UniExamQuest.Quest> AvailableQuests { get; set; }
         public UniExamQuest.Quest SelectedQuest { get; set; }
-
-        public ObservableCollection<UniExamQuest.Item> AvailableItems { get; set; }
-        public UniExamQuest.Item SelectedItem { get; set; }
 
         public GamePage()
         {
             var quests = MODEL.GM.State.Quests;
             AvailableQuests = new ObservableCollection<UniExamQuest.Quest>(quests);
+            CurrentPage = new Uri($"../View/PlayerPage.xaml", UriKind.Relative);
+        }
 
-            var items = MODEL.GM.State.Store.Items;
-            AvailableItems = new ObservableCollection<UniExamQuest.Item>(items);
+        private Command? _showPage;
+        public Command ShowPage
+        {
+            get
+            {
+                _showPage ??= new Command(
+                    p => true,
+                    p => ShowPageByName(p));
+                return _showPage;
+            }
+        }
+        public void ShowPageByName(object name)
+        {
+            CurrentPage = new Uri($"../View/{name.ToString()}.xaml", UriKind.Relative);
+            NotifyPropertyChanged("CurrentPage");
         }
     }
 }
