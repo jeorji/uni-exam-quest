@@ -1,5 +1,6 @@
 ﻿namespace UniExamQuest
 {
+    [Serializable]
     public class Item : Activity
     {
         public decimal Price { get; set; }

@@ -1,5 +1,6 @@
 namespace UniExamQuest
 {
+    [Serializable]
     public class Inventory
     {
         public Dictionary<Item, int> Content;

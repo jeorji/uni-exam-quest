@@ -1,5 +1,6 @@
 ﻿namespace UniExamQuest
 {
+    [Serializable]
     public class Store
     {
         public List<Item> Items;

@@ -1,5 +1,6 @@
 namespace UniExamQuest
 {
+    [Serializable]
     public class Quest : Activity
     {
         public enum QuestType

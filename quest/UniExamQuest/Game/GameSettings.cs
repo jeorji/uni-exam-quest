@@ -1,5 +1,6 @@
 namespace UniExamQuest
 {
+    [Serializable]
     public class GameSettings
     {
         public int DailyHealthChange { get; set; }

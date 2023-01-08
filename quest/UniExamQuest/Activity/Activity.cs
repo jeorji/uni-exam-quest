@@ -1,5 +1,6 @@
 namespace UniExamQuest
 {
+    [Serializable]
     public abstract class Activity
     {
         public string Name { get; set; }

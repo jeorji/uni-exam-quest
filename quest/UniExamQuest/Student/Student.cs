@@ -3,7 +3,7 @@ using System;
 namespace UniExamQuest
 {
     interface IStudent : IStoreBuyer, IActivityConsumer, IPlayer { }
-
+    [Serializable]
     public class Student : IStudent
     {
         public int Health { get; set; }
@@ -41,10 +41,13 @@ namespace UniExamQuest
 
         public void InteractWith(Activity activity)
         {
-            Happiness += activity.Happiness;
-            Satiation += activity.Satiation;
-            Mind += activity.Mind;
-            Health += activity.Health;
+            if (IsAlive)
+            {
+                Happiness += activity.Happiness;
+                Satiation += activity.Satiation;
+                Mind += activity.Mind;
+                Health += activity.Health;
+            }
         }
     }
 }

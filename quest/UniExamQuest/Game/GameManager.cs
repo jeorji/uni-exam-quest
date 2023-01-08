@@ -29,19 +29,20 @@ namespace UniExamQuest
             {
                 throw new Exception("Error: " + ex.Message);
             }
-            State.SetStartPlayerValues();
+            State.SetStartValues();
         }
 
         public void SaveGame(string gameName)
         {
-            Storage.SaveToFile<GameState>(State, $"./GameSaves/{gameName}.xml");
+            var AL = new AssetsStorage(new BinLoader());
+            AL.SaveToFile<GameState>(State, $"./GameSaves/{gameName}.bin");
         }
 
         public void LoadGame(string gameName)
         {
             try
             {
-                Storage.LoadFromFile<GameState>($"./GameSaves/{gameName}.xml");
+                Storage.LoadFromFile<GameState>($"./GameSaves/{gameName}.bin");
             }
             catch (NotImplementedException ex)
             {

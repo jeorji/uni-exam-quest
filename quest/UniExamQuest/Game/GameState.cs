@@ -23,6 +23,7 @@ namespace UniExamQuest
         void GetStipend();
     }
 
+    [Serializable]
     public class GameState
     {
         public IPlayer Player { get; set; }
@@ -32,7 +33,7 @@ namespace UniExamQuest
 
         public int Day { get; set; }
 
-        public void SetStartPlayerValues()
+        public void SetStartValues()
         {
             isNotNull();
             // put in settings
@@ -40,6 +41,7 @@ namespace UniExamQuest
             Player.Happiness = 50;
             Player.Satiation = 100;
             Player.Mind = 0;
+            Day = 0;
         }
 
         public void NextDay()
@@ -59,22 +61,10 @@ namespace UniExamQuest
 
             try
             {
-                if (Player.Happiness + Settings.DailyHappinesChange >= 0)   
-                {
-                    Player.Happiness += Settings.DailyHappinesChange;
-                }
-                if (Player.Satiation + Settings.DailySatiationChange >= 0)
-                {
-                    Player.Satiation += Settings.DailySatiationChange;
-                }
-                if (Player.Mind + Settings.DailyMindChange >= 0)
-                {
-                    Player.Mind += Settings.DailyMindChange;
-                }
-                if (Player.Health + getDailyHealthChange() >= 0)
-                {
-                    Player.Health += getDailyHealthChange();
-                }
+                Player.Happiness += Settings.DailyHappinesChange;
+                Player.Satiation += Settings.DailySatiationChange;
+                Player.Mind += Settings.DailyMindChange;
+                Player.Health += getDailyHealthChange();
             }
             catch (Exception ex)
             {
