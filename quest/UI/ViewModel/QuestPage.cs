@@ -15,9 +15,9 @@ namespace UI.ViewModel
     {
         public ObservableCollection<UniExamQuest.Quest> FilteredQuests { get; set; }
         private UniExamQuest.Quest selectedQuest;
-        public UniExamQuest.Quest SelectedQuest
-        {
-            get => selectedQuest;
+        public UniExamQuest.Quest SelectedQuest 
+        { 
+            get => selectedQuest; 
             set
             {
                 selectedQuest = value;
@@ -58,22 +58,27 @@ namespace UI.ViewModel
             get
             {
                 _completeQuest ??= new Command(
-                    p => SelectedQuest is not null,
+                    p => SelectedQuest is not null && MODEL.GM.State.Player.IsAlive,
                     p => doQuest());
                 return _completeQuest;
             }
         }
         private void doQuest()
         {
-            MODEL.GM.State.Player.InteractWith(SelectedQuest);
-            MODEL.GM.State.NextDay();
-            var info = $"Выполнен квест {SelectedQuest.Name}\n" +
-                (SelectedQuest.Health != 0 ? $"Здоровье {SelectedQuest.Health}\n" : "") +
-                (SelectedQuest.Mind != 0 ? $"Знания {SelectedQuest.Mind} \n" : "") +
-                (SelectedQuest.Happiness != 0 ? $"Счастье {SelectedQuest.Happiness} \n" : "") +
-                (SelectedQuest.Satiation != 0 ? $"Еда {SelectedQuest.Satiation} \n" : "") +
-                $"\nДень {MODEL.GM.State.Day}";
-            MessageBox.Show(info);
+            if (MODEL.GM.State.Player.IsAlive)
+            {
+                MODEL.GM.State.Player.InteractWith(SelectedQuest);
+                MODEL.GM.State.NextDay();
+
+                var info = $"Выполнен квест {SelectedQuest.Name}\n" +
+                    (SelectedQuest.Health != 0 ? $"Здоровье {SelectedQuest.Health}\n" : "") +
+                    (SelectedQuest.Mind != 0 ? $"Знания {SelectedQuest.Mind} \n" : "") +
+                    (SelectedQuest.Happiness != 0 ? $"Счастье {SelectedQuest.Happiness} \n" : "") +
+                    (SelectedQuest.Satiation != 0 ? $"Еда {SelectedQuest.Satiation} \n" : "") +
+                    $"\nДень {MODEL.GM.State.Day}";
+                MessageBox.Show(info);
+
+            }
         }
     }
 }
