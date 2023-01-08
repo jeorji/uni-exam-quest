@@ -22,7 +22,7 @@
                 <TextBlock x:Name="ALL"><Run Text="Все"/></TextBlock>
                 <TextBlock x:Name="REST"><Run Text="Отдых"/></TextBlock>
                 <TextBlock x:Name="WORK"><Run Text="Работа"/></TextBlock>
-                <TextBlock x:Name="UNIVERSIRTY"><Run Text="Учеба"/></TextBlock>
+                <TextBlock x:Name="UNIVERSITY"><Run Text="Учеба"/></TextBlock>
             </ComboBox>
         </WrapPanel>
 
@@ -36,11 +36,40 @@
             </ListView.ItemTemplate>
         </ListView>
 
-
-        <StackPanel DataContext="{Binding SelectedQuest}" Margin="20,240,20,35">
-            <TextBlock Text="{Binding Name}" />
-            <TextBlock Text="{Binding Health}" />
+        <Grid Visibility="{Binding QuestPreview}">
+        <StackPanel DataContext="{Binding SelectedQuest}" Margin="20,257,20,35">
+            <WrapPanel>
+                <TextBlock Text="{Binding Name}" FontSize="20" />
+                <TextBlock Text="  " FontSize="20" />
+            </WrapPanel>
+            <TextBlock />
+            <WrapPanel>
+                <TextBlock Text="🖤" FontSize="16" />
+                <TextBlock Text="  " FontSize="16" />
+                <TextBlock Text="{Binding Health}" FontSize="16"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="🍗" FontSize="16" />
+                <TextBlock Text="  " FontSize="16" />
+                <TextBlock Text="{Binding Satiation}" FontSize="16"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="🎓" FontSize="16" />
+                <TextBlock Text="  " FontSize="16" />
+                <TextBlock Text="{Binding Mind}" FontSize="16"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="😀" FontSize="16" />
+                <TextBlock Text="  " FontSize="16" />
+                <TextBlock Text="{Binding Happiness}" FontSize="16"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="💵" FontSize="16" />
+                <TextBlock Text="  " FontSize="16" />
+                <TextBlock Text="{Binding Money}" FontSize="16"/>
+            </WrapPanel>
         </StackPanel>
+        </Grid>
 
         <Button Content="Выполнить" Command="{Binding CompleteQuest}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,520,0,0" Width="380"/>
     </Grid>

@@ -25,6 +25,7 @@ namespace UI.ViewModel
         {
             get => (int)(Player.Mind - CurrentLevel * MindToUpLevel);
         }
+        public Visibility ItemPreview { get; set; }
         public List<KeyValuePair<UniExamQuest.Item, int>> InventoryItems { get; set; }
         private KeyValuePair<UniExamQuest.Item, int>? selectedItem;
         public KeyValuePair<UniExamQuest.Item, int>? SelectedItem 
@@ -32,7 +33,9 @@ namespace UI.ViewModel
             get => selectedItem;
             set
             {
+                ItemPreview = Visibility.Visible;
                 selectedItem = value;
+                NotifyPropertyChanged("ItemPreview");
                 NotifyPropertyChanged();
             }
         }
@@ -47,6 +50,7 @@ namespace UI.ViewModel
                 showLastMessage();
                 returnToMenu();
             }
+            ItemPreview = Visibility.Hidden;
         }
         private Command? _useItem;
         public Command UseItem

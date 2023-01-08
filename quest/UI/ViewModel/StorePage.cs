@@ -10,14 +10,27 @@ using UI.Model;
 
 namespace UI.ViewModel
 {
-    internal class StorePage
+    internal class StorePage : DefaultViewModel
     {
         public ObservableCollection<UniExamQuest.Item> AvailableItems { get; set; }
-        public UniExamQuest.Item SelectedItem { get; set; }
+        private UniExamQuest.Item selectedItem { get; set; }
+        public UniExamQuest.Item SelectedItem
+        {
+            get => selectedItem;
+            set
+            {
+                ItemPreview = Visibility.Visible;
+                selectedItem = value;
+                NotifyPropertyChanged("ItemPreview");
+                NotifyPropertyChanged();
+            }
+        }
+        public Visibility ItemPreview { get; set; }
         public StorePage() 
         {
-            var items = MODEL.GM.State.Storage.Items;
+            var items = MODEL.GM.State.Store.Items;
             AvailableItems = new ObservableCollection<UniExamQuest.Item>(items);
+            ItemPreview = Visibility.Hidden;
         }
         private Command? _buyItem;
         public Command BuyItem
@@ -34,6 +47,7 @@ namespace UI.ViewModel
                 return _buyItem;
             }
         }
+
         private bool isMoneyEnought()
         {
             if (SelectedItem is not null)

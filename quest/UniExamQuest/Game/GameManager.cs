@@ -19,12 +19,13 @@ namespace UniExamQuest
         public void NewGame(string playerName)
         {
             State.Player = new Student(playerName);
-            State.Storage = new Store();
-            try                                               
-            {
+            State.Store = new Store();
+            
                 State.Settings = loadFromCurrentDir<GameSettings>("settings.xml");
-                State.Storage.Items = loadFromCurrentDir<List<Item>>("items.xml");
+                State.Store.Items = loadFromCurrentDir<List<Item>>("items.xml");
                 State.Quests = loadFromCurrentDir<List<Quest>>("quests.xml");
+                try
+            { 
             }
             catch (Exception ex)
             {

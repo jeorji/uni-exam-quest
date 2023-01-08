@@ -28,7 +28,7 @@ namespace UniExamQuest
     {
         public IPlayer Player { get; set; }
         public GameSettings Settings { get; set; }
-        public Store Storage { get; set; }
+        public Store Store { get; set; }
         public List<Quest> Quests { get; set; }
 
         public int Day { get; set; }

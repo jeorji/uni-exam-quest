@@ -27,10 +27,10 @@ namespace UniExamQuest
             
             if (Path.GetExtension(path) != Loader.FileExtension)
                 throw new Exception("File has another extension");
-            
+            string text = File.ReadAllText(path);
+
             try
             {
-                string text = File.ReadAllText(path);
                 return Loader.Deserialize<T>(text);
             }
             

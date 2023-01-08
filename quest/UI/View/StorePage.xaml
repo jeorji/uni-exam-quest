@@ -16,7 +16,7 @@
     <Grid>
         <Label Content="Магазин" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Width="380"/>
 
-        <ListView ItemsSource="{Binding AvailableItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" SelectedItem="{Binding SelectedItem}" Margin="10,52,10,342">
+        <ListView ItemsSource="{Binding AvailableItems, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" SelectedItem="{Binding SelectedItem}" Margin="20,52,20,342">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -27,14 +27,40 @@
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
+
         </ListView>
 
-
-        <StackPanel DataContext="{Binding SelectedItem}" Margin="10,213,10,35">
-            <TextBlock Text="{Binding Name}" />
-            <TextBlock Text="{Binding Price}"/>
-        </StackPanel>
-
+        <Grid Visibility="{Binding ItemPreview}">
+            <StackPanel DataContext="{Binding SelectedItem}" Margin="20,230,20,35">
+                <WrapPanel>
+                    <TextBlock Text="{Binding Name}" FontSize="20" />
+                    <TextBlock Text="  " FontSize="20" />
+                    <TextBlock Text="{Binding Price}" FontSize="18"/>
+                    <TextBlock Text="руб " FontSize="18" />
+                </WrapPanel>
+                <TextBlock />
+                <WrapPanel>
+                    <TextBlock Text="🖤" FontSize="16" />
+                    <TextBlock Text="  " FontSize="16" />
+                    <TextBlock Text="{Binding Health}" FontSize="16"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="🍗" FontSize="16" />
+                    <TextBlock Text="  " FontSize="16" />
+                    <TextBlock Text="{Binding Satiation}" FontSize="16"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="🎓" FontSize="16" />
+                    <TextBlock Text="  " FontSize="16" />
+                    <TextBlock Text="{Binding Mind}" FontSize="16"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="😀" FontSize="16" />
+                    <TextBlock Text="  " FontSize="16" />
+                    <TextBlock Text="{Binding Happiness}" FontSize="16"/>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
 
         <Button Content="Купить" Command="{Binding BuyItem}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,520,0,0" Width="380"/>
     </Grid>

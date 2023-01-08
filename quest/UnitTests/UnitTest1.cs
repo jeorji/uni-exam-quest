@@ -35,7 +35,7 @@ namespace UnitTests
             Student student = new Student("Ivanov");
             student.Health = 50;
 
-            Quest quest = new Quest("Exams", Quest.QuestType.UNIVERSIRTY);
+            Quest quest = new Quest("Exams", Quest.QuestType.UNIVERSITY);
             quest.Health = -10;
 
             student.InteractWith(quest);
@@ -49,7 +49,7 @@ namespace UnitTests
             Student student = new Student("Ivanov");
             student.Mind = 50;
 
-            Quest quest = new Quest("Exams", Quest.QuestType.UNIVERSIRTY);
+            Quest quest = new Quest("Exams", Quest.QuestType.UNIVERSITY);
             quest.Mind = +10;
 
             student.InteractWith(quest);

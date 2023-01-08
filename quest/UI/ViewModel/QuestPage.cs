@@ -14,13 +14,16 @@ namespace UI.ViewModel
     internal class QuestPage : DefaultViewModel
     {
         public ObservableCollection<UniExamQuest.Quest> FilteredQuests { get; set; }
-        private UniExamQuest.Quest selectedQuest;
+        private UniExamQuest.Quest selectedQuest { get; set; }
+        public Visibility QuestPreview { get; set; }
         public UniExamQuest.Quest SelectedQuest 
         { 
             get => selectedQuest; 
             set
             {
+                QuestPreview = Visibility.Visible;
                 selectedQuest = value;
+                NotifyPropertyChanged("QuestPreview");
                 NotifyPropertyChanged();
             }
         }
@@ -36,7 +39,7 @@ namespace UI.ViewModel
                 {
                     "REST" => UniExamQuest.Quest.QuestType.REST,
                     "WORK" => UniExamQuest.Quest.QuestType.WORK,
-                    "UNIVERSIRTY" => UniExamQuest.Quest.QuestType.UNIVERSIRTY,
+                    "UNIVERSITY" => UniExamQuest.Quest.QuestType.UNIVERSITY,
                     "ALL" => null
                 };
 
@@ -51,6 +54,7 @@ namespace UI.ViewModel
         {
             Quests = MODEL.GM.State.Quests;
             FilteredQuests = new ObservableCollection<UniExamQuest.Quest>(Quests);
+            QuestPreview = Visibility.Hidden;
         }
         private Command? _completeQuest;
         public Command CompleteQuest

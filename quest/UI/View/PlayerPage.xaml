@@ -70,11 +70,37 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Margin="205,319,20,10" Visibility="Visible">
-            <StackPanel DataContext="{Binding SelectedItem}" Margin="0,0,0,25">
-                <TextBlock Text="{Binding Key.Name}"/>
-            </StackPanel>
-            <Button Content="Использовать" Command="{Binding UseItem}" VerticalAlignment="Bottom" Height="20" />
+        <Grid Margin="205,319,20,10" Visibility="{Binding ItemPreview}">
+            <StackPanel DataContext="{Binding SelectedItem}" Margin="10,0,0,25">
+                    <WrapPanel>
+                    <TextBlock Text="{Binding Key.Name}" FontSize="16" />
+                        <TextBlock Text="  " FontSize="16" />
+                    <TextBlock Text="{Binding Key.Price}" FontSize="14"/>
+                        <TextBlock Text="руб " FontSize="14" />
+                    </WrapPanel>
+                    <TextBlock />
+                    <WrapPanel>
+                        <TextBlock Text="🖤" FontSize="14" />
+                        <TextBlock Text="  " FontSize="14" />
+                    <TextBlock Text="{Binding Key.Health}" FontSize="14"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="🍗" FontSize="14" />
+                        <TextBlock Text="  " FontSize="14" />
+                    <TextBlock Text="{Binding Key.Satiation}" FontSize="14"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="🎓" FontSize="14" />
+                        <TextBlock Text="  " FontSize="14" />
+                    <TextBlock Text="{Binding Key.Mind}" FontSize="14"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="😀" FontSize="14" />
+                        <TextBlock Text="  " FontSize="14" />
+                    <TextBlock Text="{Binding Key.Happiness}" FontSize="14"/>
+                    </WrapPanel>
+                </StackPanel>
+            <Button Content="Использовать" Command="{Binding UseItem}" VerticalAlignment="Bottom" Height="20" Margin="10,0,0,0" />
         </Grid>
     </Grid>
 </Page>

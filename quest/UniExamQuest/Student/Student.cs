@@ -1,10 +1,10 @@
 using System;
+using System.Diagnostics;
 
 namespace UniExamQuest
 {
-    interface IStudent : IStoreBuyer, IActivityConsumer, IPlayer { }
     [Serializable]
-    public class Student : IStudent
+    public class Student : IPlayer
     {
         public int Health { get; set; }
         public int Satiation { get; set; }
@@ -12,8 +12,8 @@ namespace UniExamQuest
         public int Mind { get; set; }
         public Inventory Inventory { get; set; }
         public string Name { get; set; }
-        public int StipendSize { get; set; }
         public decimal Money { get; set; }
+        public int StipendSize { get; set; }
         public bool IsAlive => Health > 0;
 
         public Student(string name)
@@ -47,6 +47,12 @@ namespace UniExamQuest
                 Satiation = normalizeValue(Satiation, activity.Satiation, 100);
                 Health = normalizeValue(Health, activity.Health, 100);
                 Mind = normalizeValue(Mind, activity.Mind);
+                if (activity.GetType() == typeof(Quest)) 
+                {
+                    Money = Money + ((Quest)activity).Money < 0 ? 
+                        0 : 
+                        Money + ((Quest)activity).Money;
+                }
             }
         }
         // move to GameState and read this values from settings

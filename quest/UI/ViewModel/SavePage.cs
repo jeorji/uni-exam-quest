@@ -12,7 +12,6 @@ namespace UI.ViewModel
     class SavePage : DefaultViewModel
     {
         public string? SaveName { get; set; }
-        //public string
 
         private Command? _saveGame;
         public Command SaveGame
@@ -25,6 +24,9 @@ namespace UI.ViewModel
                     {
                         MODEL.GM.SaveGame(SaveName);
                         Mediator.SendPropertyChanged<string>("SavePanel", SaveName);
+                        Mediator.SendPropertyChanged<string>("CurrentGamePage", "PlayerPage");
+                        var info = $"Игра сохранена ./GameSaves/{SaveName}.bin";
+                        MessageBox.Show(info);
                     });
                 return _saveGame;
             }
