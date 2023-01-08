@@ -6,7 +6,7 @@ namespace UI.ViewModel
 {
     internal class NewGameGreetingPage : DefaultViewModel
     {
-        public string NewUserName { get; set; }
+        public string? NewUserName { get; set; }
 
         private Command? startGame;
         public Command StartGame
@@ -14,7 +14,7 @@ namespace UI.ViewModel
             get
             {
                 startGame ??= new Command(
-                    p => NewUserName is not null && NewUserName.Length > 0,
+                    p => NewUserName is not null,
                     p => NewGameWithUserName(p));
                 return startGame;
             }

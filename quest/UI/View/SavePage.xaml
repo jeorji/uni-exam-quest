@@ -1,0 +1,23 @@
+﻿<Page x:Class="UI.View.SavePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UI.View"
+      xmlns:vm="clr-namespace:UI.ViewModel"
+      mc:Ignorable="d" 
+      Height="550" Width="400"
+      d:DesignHeight="550" d:DesignWidth="400" 
+      Title="SavePage">
+
+    <Page.DataContext>
+        <vm:SavePage/>
+    </Page.DataContext>
+    
+    <Grid>
+        <Label Content="Введите название сохранения" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+        <TextBox Margin="20,50,20,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding SaveName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Сохранить" Command="{Binding SaveGame}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,0,10,10" Width="380"/>
+
+    </Grid>
+</Page>

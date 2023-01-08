@@ -18,6 +18,9 @@
         <Label Content="Жизнь студента" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,200,0,0" />
         <Button Content="Новая игра" FontSize="18" Command="{Binding ShowPage}" 
                 DataContext="{StaticResource MainWindow}" CommandParameter="NewGameGreetingPage"
-                VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                VerticalAlignment="Center" HorizontalAlignment="Center" Width="154"/>
+        <Button Content="Загрузить игру" FontSize="18" Command="{Binding ShowPage}"
+                DataContext="{StaticResource MainWindow}" CommandParameter="LoadGamePage"
+                VerticalAlignment="Top" HorizontalAlignment="Center" Width="154" Margin="0,319,0,0"/>
     </Grid>
 </Page>

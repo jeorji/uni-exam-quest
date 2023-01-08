@@ -6,6 +6,7 @@ namespace UniExamQuest
     public class GameMananger
     {
         public GameState State { get; set; }
+        public string? LoadedGameName { get; set; }
 
         private AssetsStorage Storage { get; set; }
 
@@ -30,19 +31,23 @@ namespace UniExamQuest
                 throw new Exception("Error: " + ex.Message);
             }
             State.SetStartValues();
+            LoadedGameName = null;
         }
 
         public void SaveGame(string gameName)
         {
             var AL = new AssetsStorage(new BinLoader());
             AL.SaveToFile<GameState>(State, $"./GameSaves/{gameName}.bin");
+            LoadedGameName = gameName;
         }
 
         public void LoadGame(string gameName)
         {
+            var AL = new AssetsStorage(new BinLoader());
             try
             {
-                Storage.LoadFromFile<GameState>($"./GameSaves/{gameName}.bin");
+                State = AL.LoadFromFile<GameState>($"./GameSaves/{gameName}.bin");
+                LoadedGameName = gameName;
             }
             catch (NotImplementedException ex)
             {

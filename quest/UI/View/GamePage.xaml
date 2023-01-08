@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:UI.View"
       xmlns:vm="clr-namespace:UI.ViewModel"
       mc:Ignorable="d"
-      Title="GamePage" Height="600" Width="400">
+      Title="GamePage" Height="630" Width="400">
 
     <Page.DataContext>
         <vm:GamePage/>
@@ -14,10 +14,22 @@
 
     <Grid>
 
-        <Frame Source="{Binding CurrentPage}" Margin="0,0,0,50" />
-        <Button Content="🛍" FontSize="18" Command="{Binding ShowPage}" CommandParameter="StorePage" Margin="10,563,270,10" />
-        <Button Content="👨" FontSize="18" Command="{Binding ShowPage}" CommandParameter="PlayerPage" Margin="140,563,140,10" />
-        <Button Content="📚" FontSize="18" Command="{Binding ShowPage}" CommandParameter="QuestPage" Margin="270,563,10,10" />
+        <Frame Source="{Binding CurrentPage}" Margin="0,0,0,72" />
 
+        <Button Content="🛍" FontSize="18" Command="{Binding ShowPage}" CommandParameter="StorePage" Margin="10,563,270,38" />
+        <Button Content="👨" FontSize="18" Command="{Binding ShowPage}" CommandParameter="PlayerPage" Margin="140,563,140,38" />
+        <Button Content="📚" FontSize="18" Command="{Binding ShowPage}" CommandParameter="QuestPage" Margin="270,563,10,0" Height="29" VerticalAlignment="Top" />
+
+        <Grid Margin="0,597,0,10">
+            <Grid Margin="10,0,10,0" Visibility="{Binding LoadedGameSavePanel}">
+                <TextBlock Text="Сохранение: " Margin="0,0,302,0" />
+                <TextBlock Text="{Binding CurrentSave}" Margin="83,0,85,0" />
+                <Button Content="Сохранить" Command="{Binding ShowPage}" CommandParameter="SavePage" HorizontalAlignment="Right" Width="80" Margin="0,0,0,3"/>
+            </Grid>
+            <StackPanel Margin="10,0,10,0" Visibility="{Binding NewGameSavePanel}">
+                <Button Content="Сохранить игру" Command="{Binding ShowPage}" CommandParameter="SavePage" />
+            </StackPanel>
         </Grid>
+
+    </Grid>
 </Page>
