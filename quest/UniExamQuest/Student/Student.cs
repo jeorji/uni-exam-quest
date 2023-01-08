@@ -43,11 +43,20 @@ namespace UniExamQuest
         {
             if (IsAlive)
             {
-                Happiness += activity.Happiness;
-                Satiation += activity.Satiation;
-                Mind += activity.Mind;
-                Health += activity.Health;
+                Happiness = normalizeValue(Happiness, activity.Happiness, 100);
+                Satiation = normalizeValue(Satiation, activity.Satiation, 100);
+                Health = normalizeValue(Health, activity.Health, 100);
+                Mind = normalizeValue(Mind, activity.Mind);
             }
+        }
+        // move to GameState and read this values from settings
+        private int normalizeValue(int prop, int update, int max = int.MaxValue)
+        {
+            if (prop + update > max)
+                return max;
+            if (prop + update < 0)
+                return 0;
+            return prop + update;
         }
     }
 }

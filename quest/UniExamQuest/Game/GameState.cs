@@ -61,10 +61,10 @@ namespace UniExamQuest
 
             try
             {
-                Player.Happiness += Settings.DailyHappinesChange;
-                Player.Satiation += Settings.DailySatiationChange;
-                Player.Mind += Settings.DailyMindChange;
-                Player.Health += getDailyHealthChange();
+                Player.Happiness = normalizeValue(Player.Happiness, Settings.DailyHappinesChange, 100);
+                Player.Satiation = normalizeValue(Player.Satiation, Settings.DailySatiationChange, 100);
+                Player.Health = normalizeValue(Player.Health, getDailyHealthChange(), 100);
+                Player.Mind = normalizeValue(Player.Mind, Settings.DailyMindChange);
             }
             catch (Exception ex)
             {
@@ -91,6 +91,15 @@ namespace UniExamQuest
             
             if (Player is null)
                 throw new Exception("Player: null");      
+        }
+
+        private int normalizeValue(int prop, int update, int max = int.MaxValue)
+        {
+            if (prop + update > max)
+                return max;
+            if (prop + update < 0)
+                return 0;
+            return prop + update;
         }
     }
 }

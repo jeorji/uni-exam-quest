@@ -42,6 +42,11 @@ namespace UI.ViewModel
             MindToUpLevel = MODEL.GM.State.Settings.MindToUpLevel;
             CurrentDay = MODEL.GM.State.Day;
             InventoryItems = MODEL.GM.State.Player.Inventory.Content.ToList();
+            if (!Player.IsAlive)
+            {
+                showLastMessage();
+                returnToMenu();
+            }
         }
         private Command? _useItem;
         public Command UseItem
@@ -61,10 +66,29 @@ namespace UI.ViewModel
                         NotifyPropertyChanged("InventoryItems");
                         NotifyPropertyChanged("SelectedItem");
                         NotifyPropertyChanged("Player");
+
+                        if (!Player.IsAlive)
+                        {
+                            showLastMessage();
+                            returnToMenu();
+                        }
                     });
 
                 return _useItem;
             }
+        }
+        private void showLastMessage()
+        {
+            var info = $"{Player.Name}, вы сегодня не проснулись утром (\n\n" +
+                $"{Player.Name} прожил счастливую жизнь\n" +
+                $"И накопил {Player.Money} денег за {CurrentDay} дней";
+
+            MessageBox.Show(info);
+        }
+        private void returnToMenu()
+        {
+            MainWindow mw = (MainWindow)Application.Current.FindResource("MainWindow");
+            mw.ShowPageByName("StartPage");
         }
     }
 }
